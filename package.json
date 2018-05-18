@@ -23,8 +23,9 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "jsonwebtoken": "^8.1.0",
+    "jsonwebtoken": "^8.2.1",
     "mongoose": "^5.1.1",
-    "node-fetch": "^1.7.3"
+    "node-fetch": "^1.7.3",
+    "nodemon": "^1.17.4"
   }
 }
