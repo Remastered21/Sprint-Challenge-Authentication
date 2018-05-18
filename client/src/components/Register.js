@@ -22,12 +22,11 @@ export default class SignUp extends Component {
     axios
       .post("http://localhost:5000/api/users", this.state)
       .then(response => {
-        
         this.props.history.push("/login");
       })
       .catch(err => {
+        console.log(err);
 
-        this.props.history.push("/login");
       });
   };
 

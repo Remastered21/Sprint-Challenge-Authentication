@@ -50,7 +50,7 @@ export default class Jokes extends Component {
           : null}
 
         <button onClick={this.signOutHandler}>Sign out</button>
-        
+
         <h1>Dad jokes:</h1>
         {this.state.jokes.map(eachJokes => (
           <div key={eachJokes.id}>
