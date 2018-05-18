@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default class Login extends Component {
   constructor() {
@@ -7,6 +8,7 @@ export default class Login extends Component {
     this.state = {
       username: "",
       password: "",
+      pwShowToggle: false,
       isWrongCred: false
     };
   }
@@ -20,7 +22,7 @@ export default class Login extends Component {
     const login = axios.post("http://localhost:5000/api/login", this.state);
 
     e.preventDefault();
-    
+
     login
       .then(response => {
         localStorage.setItem("token", response.data.token);
@@ -29,8 +31,19 @@ export default class Login extends Component {
       .catch(err => {
         localStorage.removeItem("token");
         this.setState({ isWrongCred: true });
+        this.setState({ password: "" });
       });
   };
+
+  pwToggle() {
+    const pwToggle = document.getElementById("pwInput");
+
+    if (pwToggle.type === "password") {
+      pwToggle.type = "text";
+    } else {
+      pwToggle.type = "password";
+    }
+  }
 
   render() {
     return (
@@ -51,16 +64,30 @@ export default class Login extends Component {
               value={this.state.password}
               onChange={this.inputChangeHandler}
               type="password"
+              id="pwInput"
             />
+            <br />
+            <input type="checkbox" onClick={this.pwToggle} />Show Password
           </div>
           <div>
             <button>Sign in</button>
+
             <br />
+            <br />
+
+            <div>
+              {this.state.isWrongCred ? (
+                <h2>Your username/password was incorrect.</h2>
+              ) : null}
+            </div>
+
             <br />
             <div>
-              {this.state.isWrongCred
-                ? "Your username/password was incorrect."
-                : null}
+              Don't have account?
+              <br />
+              <Link to="/register">
+                <button>Sign Up!</button>
+              </Link>
             </div>
           </div>
         </form>
