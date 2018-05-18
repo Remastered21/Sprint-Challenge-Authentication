@@ -20,10 +20,11 @@ export default class Login extends Component {
     const login = axios.post("http://localhost:5000/api/login", this.state);
 
     e.preventDefault();
+    
     login
       .then(response => {
         localStorage.setItem("token", response.data.token);
-        this.props.history.push("/users");
+        this.props.history.push("/jokes");
       })
       .catch(err => {
         localStorage.removeItem("token");

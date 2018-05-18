@@ -13,10 +13,15 @@ class App extends Component {
     return (
       <div className="App">
         <h1> Welcome </h1>
-        <Redirect from="/" to="/login" />
-        <Route path="/jokes" component={Jokes} />
-        <Route path="/users" component={Register} />
-        <Route path="/login" component={Login} />
+        <Route
+          exact
+          path="/"
+          render={() => <Redirect from="/" to="/login" />}
+        />
+
+        <Route exact path="/jokes" component={Jokes} />
+        {/* <Route exact path="/users" component={Register} /> */}
+        <Route exact path="/login" component={Login} />
       </div>
     );
   }
